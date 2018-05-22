@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ChatBot_MVC.Models.Reaction>
+
+@{
+    ViewBag.Title = "Reactions";
+}
+
+<h2>Reactions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Object)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mood)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emoji)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Object)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mood)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emoji)
+        </td>
+        @if (User.IsInRole("Reaction Maintainer") || User.IsInRole("Editor"))
+        {
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        }
+
+    </tr>
+}
+
+</table>

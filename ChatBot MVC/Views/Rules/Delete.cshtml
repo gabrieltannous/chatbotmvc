@@ -1,0 +1,72 @@
+﻿@model ChatBot_MVC.Models.Rule
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RuleString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RuleString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RuleField)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RuleField)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseField)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseField)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEditor)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

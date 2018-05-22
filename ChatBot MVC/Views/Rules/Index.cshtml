@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ChatBot_MVC.Models.Rule>
+
+@{
+    ViewBag.Title = "Rules";
+}
+
+<h2>Rules</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RuleString)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseString)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RuleField)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseField)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RuleString)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseString)
+        </td>
+        @if (User.IsInRole("Approver"))
+        {
+            if (item.Approved == null)
+            {
+                <td>
+                    @Html.ActionLink("Approve", "Approve", new { id = item.Id })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Approved)
+                </td>
+            }
+        }
+        else
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Approved)
+            </td>
+        }
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RuleField)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseField)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEditor)
+        </td>
+        @if (User.IsInRole("Editor") && item.Approved == null)
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        }
+    </tr>
+}
+
+</table>

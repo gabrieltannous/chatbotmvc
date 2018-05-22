@@ -1,0 +1,34 @@
+﻿@model List<ChatBot_MVC.Models.Transcript>
+@{
+    ViewBag.Title = "ChatBot";
+}
+
+@using (Html.BeginForm("Message", "Home", FormMethod.Post))
+{
+    <div id="chat-container">
+        <p><b>You are now talking with ChatBot! Say hi!</b></p>
+        
+    <table class="transcript-table">
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="transcript-name">
+                    @item.Name
+                </td>
+                <td class="transcript-message">
+                    @item.Message
+                </td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+        </div>
+    <div class="form-group">
+        <div class="type-text-container">
+            <input type="text" ID="ChatTextBox" placeholder="Enter text..." name="msg" />
+            <input type="submit" ID="ChatButton" value="Send" class="btn btn-default" />
+        </div>
+    </div>
+}
